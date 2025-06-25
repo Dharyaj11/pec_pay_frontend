@@ -21,6 +21,7 @@ import axios from "axios";
 import { Button } from "./Button";
 import { Link, useNavigate } from "react-router-dom";
 
+const Backend_url = import.meta.env.VITE_BACKEND_URL;
 export const Appbar = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ export const Appbar = () => {
       navigate("/signin"); // Redirect to sign-in page if token doesn't exist
     } else {
       axios
-        .get("http://localhost:3000/api/v1/user/getUser", {
+        .get(Backend_url+"/api/v1/user/getUser", {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
